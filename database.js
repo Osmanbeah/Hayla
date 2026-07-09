@@ -1,7 +1,7 @@
 const { Pool } = require('@neondatabase/serverless');
 const bcrypt = require('bcryptjs');
 
-const dbUrl = process.env.DATABASE_URL;
+const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.STORAGE_URL;
 const pool = new Pool({
   connectionString: dbUrl,
   ssl: true
