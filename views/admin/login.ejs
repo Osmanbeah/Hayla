@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Admin Login - Hayla Kitchen</title>
+    <link rel="icon" type="image/svg+xml" href="/images/logo/icon.svg" />
+    <link rel="apple-touch-icon" href="/images/logo/icon.svg" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            "colors": {
+              "primary": "#994127",
+              "primary-container": "#b8583d",
+              "surface": "#fef9f2",
+              "on-surface": "#1d1c18",
+              "on-surface-variant": "#56423d",
+              "background": "#fef9f2",
+              "outline-variant": "#dcc1ba"
+            },
+            "fontFamily": {
+              "body-md": ["Quicksand"],
+              "headline-md": ["Playfair Display"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        .linen-texture {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("https://www.transparenttextures.com/patterns/linen.png");
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col justify-center items-center p-6 relative antialiased">
+    <div class="linen-texture"></div>
+
+    <div class="max-w-md w-full bg-white p-8 rounded-2xl border border-outline-variant/40 shadow-[0_15px_40px_-10px_rgba(153,65,39,0.12)] space-y-6 transition-all duration-300 hover:shadow-[0_20px_50px_-8px_rgba(153,65,39,0.16)]">
+        <!-- Brand / Header -->
+        <div class="text-center space-y-2">
+            <div class="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-3">
+                <img src="/images/logo/icon.svg" alt="Hayla Icon" class="w-12 h-12" />
+            </div>
+            <h1 class="font-headline-md text-3xl font-bold text-primary">Hayla Kitchen</h1>
+            <p class="text-sm text-on-surface-variant font-medium">Admin Control Panel Login</p>
+        </div>
+
+        <!-- Alert messages -->
+        <% if (error) { %>
+            <div class="bg-red-50 text-red-600 border border-red-200/60 p-3.5 rounded-xl text-center text-sm font-semibold flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">error</span>
+                Invalid password. Please try again.
+            </div>
+        <% } %>
+
+        <!-- Login Form -->
+        <form action="/admin/login" method="POST" class="space-y-5">
+            <div class="space-y-1.5">
+                <label class="block font-semibold text-sm text-on-surface-variant">Enter Admin Password</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">key</span>
+                    <input type="password" name="password" required placeholder="••••••••" class="w-full bg-surface/50 border border-outline-variant/60 rounded-xl pl-11 pr-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-on-surface-variant/40"/>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-xl font-bold text-sm shadow-md hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-1.5">
+                    Login <span class="material-symbols-outlined text-[18px]">login</span>
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center pt-2 border-t border-outline-variant/10">
+            <a href="/" class="text-xs text-on-surface-variant hover:text-primary transition-colors inline-flex items-center gap-1 font-semibold">
+                <span class="material-symbols-outlined text-xs">arrow_back</span> Back to Main Website
+            </a>
+        </div>
+    </div>
+</body>
+</html>

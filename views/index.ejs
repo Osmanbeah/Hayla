@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= t.dir %>" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title><%= t.brandName %> - <%= t.tagline %></title>
+    <link rel="icon" type="image/svg+xml" href="/images/logo/icon.svg" />
+    <link rel="apple-touch-icon" href="/images/logo/icon.svg" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Quicksand:wght@400;500;600;700&amp;family=Cairo:wght@400;600;750;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "primary-container": "#b8583d",
+              "on-background": "#1d1c18",
+              "surface-container-high": "#ece7e1",
+              "on-secondary-fixed": "#291800",
+              "surface": "#fef9f2",
+              "secondary-fixed-dim": "#fabb57",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "on-surface-variant": "#56423d",
+              "secondary-fixed": "#ffddb0",
+              "on-secondary-fixed-variant": "#614000",
+              "tertiary-fixed-dim": "#b7cda8",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#734d00",
+              "surface-variant": "#e6e2db",
+              "on-primary-fixed-variant": "#7d2c14",
+              "tertiary": "#4e6143",
+              "on-tertiary-container": "#f8ffee",
+              "inverse-on-surface": "#f5f0e9",
+              "secondary-container": "#fdbe5a",
+              "on-primary-fixed": "#3b0900",
+              "surface-dim": "#ded9d3",
+              "surface-container-highest": "#e6e2db",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed": "#0f2008",
+              "on-surface": "#1d1c18",
+              "secondary": "#805600",
+              "surface-tint": "#9c4329",
+              "error": "#ba1a1a",
+              "on-primary-container": "#fffbff",
+              "primary": "#994127",
+              "tertiary-container": "#667a5a",
+              "primary-fixed-dim": "#ffb5a0",
+              "outline-variant": "#dcc1ba",
+              "primary-fixed": "#ffdbd1",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "background": "#fef9f2",
+              "inverse-surface": "#32302c",
+              "outline": "#89726c",
+              "surface-bright": "#fef9f2",
+              "on-tertiary-fixed-variant": "#394c2f",
+              "tertiary-fixed": "#d3e9c3",
+              "surface-container-lowest": "#ffffff",
+              "inverse-primary": "#ffb5a0",
+              "surface-container-low": "#f8f3ec",
+              "surface-container": "#f2ede6"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "xs": "4px",
+              "gutter": "24px",
+              "sm": "12px",
+              "lg": "48px",
+              "md": "24px",
+              "base": "8px",
+              "container-max": "1200px",
+              "xl": "80px"
+            },
+            "fontFamily": {
+              "body-lg": ["<%= lang === 'ar' ? 'Cairo' : 'Quicksand' %>", "sans-serif"],
+              "body-md": ["<%= lang === 'ar' ? 'Cairo' : 'Quicksand' %>", "sans-serif"],
+              "headline-lg": ["<%= lang === 'ar' ? 'Cairo' : 'Playfair Display' %>", "serif"],
+              "headline-md": ["<%= lang === 'ar' ? 'Cairo' : 'Playfair Display' %>", "serif"],
+              "headline-lg-mobile": ["<%= lang === 'ar' ? 'Cairo' : 'Playfair Display' %>", "serif"],
+              "label-md": ["<%= lang === 'ar' ? 'Cairo' : 'Quicksand' %>", "sans-serif"],
+              "label-sm": ["<%= lang === 'ar' ? 'Cairo' : 'Quicksand' %>", "sans-serif"],
+              "headline-xl": ["<%= lang === 'ar' ? 'Cairo' : 'Playfair Display' %>", "serif"]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .linen-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/linen.png');
+            background-color: var(--tw-bg-opacity);
+        }
+        .brush-underline {
+            position: relative;
+        }
+        .brush-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5C20 3.5 45 1.5 99 6.5' stroke='%23994127' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .brush-underline:hover::after {
+            opacity: 1;
+        }
+        .card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px -10px rgba(192, 94, 66, 0.15);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+    <!-- TopAppBar -->
+    <header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
+        <nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+            <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+                <a href="/" class="flex items-center">
+                    <img src="/images/logo/lockup.svg" alt="Hayla - Authentic Egyptian Homemade Food" class="h-10 md:h-12 w-auto" />
+                </a>
+            </div>
+            <div class="hidden md:flex gap-md items-center">
+                <a class="font-label-md text-label-md text-primary border-b-2 border-primary transition-colors" href="/"><%= t.navHome %></a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/about"><%= t.navStory %></a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/menu"><%= t.navMenu %></a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/reviews"><%= t.navReviews %></a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="/contact"><%= t.navContact %></a>
+            </div>
+            <div class="flex items-center gap-4">
+                <!-- Language Switcher Button -->
+                <a href="/lang/<%= lang === 'ar' ? 'en' : 'ar' %>" class="border border-primary text-primary px-3 py-1.5 rounded-lg font-label-md hover:bg-primary/5 active:scale-95 transition-all text-xs">
+                    <%= t.langSwitchBtn %>
+                </a>
+                <a href="/menu" class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md active:scale-95 duration-200 shadow-sm hover:opacity-90 transition-all text-center">
+                    <%= t.btnPreorder %>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-[751px] flex items-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover" data-alt="<%= t.heroTag %>" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyB4SU6fIP8fwq6CYh198ETumXZetX1ABul7OogiEy-V7fhm1uz_3_VhPFQN72_w-1Y_110K5vPwyv1wsHqhEDYkfrEZF75-tL_Reg5ecP5j7MDJKCnaVWnhYXHgXociq1WkZkpZTbfe8-LBzMf2cLHiZxpgsSvFPl7g4UVUR1SpSaQIxaBOwDUar1-_Ha3Nck0cOtzl1lnsJS8UpWtfTmsaEjTO_9BZ_uPBGswpMnltU_rbCt8C2buioIbBbC3nz1WAj1KIhffI2V"/>
+                <div class="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
+            </div>
+            <div class="relative z-10 px-gutter max-w-container-max mx-auto w-full">
+                <div class="max-w-2xl space-y-md">
+                    <span class="inline-block px-4 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm uppercase tracking-wider"><%= t.heroTag %></span>
+                    <h1 class="font-headline-xl text-headline-xl text-on-background leading-tight">
+                        <%= t.heroTitleLine1 %> <span class="text-primary italic"><%= t.heroTitleLine2 %></span>
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        <%= t.heroDesc %>
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <a href="/menu" class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md shadow-lg hover:shadow-xl transition-all active:scale-95 text-center">
+                            <%= t.btnBrowseMenu %>
+                        </a>
+                        <a href="/about" class="border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-label-md hover:bg-tertiary/5 transition-all text-center">
+                            <%= t.btnOurStory %>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Story Hook -->
+        <section class="py-xl px-gutter max-w-container-max mx-auto">
+            <div class="grid md:grid-cols-2 gap-xl items-center">
+                <div class="space-y-md">
+                    <h2 class="font-headline-lg text-headline-lg text-primary"><%= t.storyTitle %></h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        <%= t.storyDesc %>
+                    </p>
+                    <a class="inline-block font-label-md text-label-md text-primary brush-underline py-1" href="/about"><%= t.storyLink %></a>
+                </div>
+                <div class="relative">
+                    <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-xl transform rotate-2">
+                        <img class="w-full h-full object-cover" data-alt="<%= t.storyTitle %>" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTpGnCXxuiwRleIpXj4vZUJssVVHHFnlXoiXRc2kvRwKG1LYOkuguzYtSsVWdcstAvJQmIR_NEwsx5Rt-QhBCSfE2n12RXrKS47qdOOMeh1tj6umHnNS3T7jjdAJDl8HLx76T9cC-NuLNC7OjP6uJjji0hcas6NSe0DckRHJ0c6HAcJKdBdatqMsWv1DTh15Q8C-Ueg51bw476Ol8BDVVeQGc2PVzzwwA9OgUncYXLSf3Or7_WPXzzU4rH7mi2Nhl-3-aMUhgJc-hS"/>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 rounded-xl overflow-hidden shadow-2xl border-4 border-white transform -rotate-3 hidden md:block">
+                        <img class="w-full h-full object-cover" data-alt="Fresh local herbs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Ac8gSuKP3L2RX6USv7yVgObC3g6N5rbbFYCeqR89U2Wrblo_-Jp2fhHxMbJugqcCzIUC2A2eGfNj3feOlE8Ax97fC-M9AzRwZWuhk4P3kCDGE1RQkCUN6jZrXN9Pf26pcCRV5tvDcRX76ddAUt9BuqKbiXcBeaynaKjrSjG9IDpvx5LSl4CYhhDtA4BNUwihNS-Bwk73lENGJp_pVCzTSk0CAbgID8e7p2LLVG-a4d3hQ6bd8inCTeEDtkotezNGanAwv5mC5rZW"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Weekly Menu -->
+        <section class="py-xl bg-surface-container-low">
+            <div class="px-gutter max-w-container-max mx-auto">
+                <div class="flex justify-between items-end mb-lg">
+                    <div>
+                        <h2 class="font-headline-lg text-headline-lg"><%= t.menuPreviewTitle %></h2>
+                        <p class="font-body-md text-on-surface-variant"><%= t.menuPreviewSubtitle %></p>
+                    </div>
+                    <a class="text-primary font-label-md hover:underline decoration-primary/30 underline-offset-4" href="/menu"><%= t.viewAllItems %></a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+                    <% chefSpecials.forEach((dish) => { %>
+                        <div class="bg-surface rounded-lg overflow-hidden card-lift group flex flex-col justify-between">
+                            <div class="h-64 overflow-hidden relative">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="<%= dish.name %>" src="<%= dish.photo_url %>"/>
+                                <% if (dish.is_chef_special) { %>
+                                    <span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm"><%= t.chefSpecial %></span>
+                                <% } %>
+                                <% if (dish.stock_limit !== -1) { %>
+                                    <span class="absolute bottom-4 right-4 bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full font-label-sm"><%= t.limitedPortions %>: <%= dish.stock_limit %></span>
+                                <% } %>
+                            </div>
+                            <div class="p-md space-y-xs flex-grow flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="font-headline-md text-headline-md"><%= dish.name %></h3>
+                                        <span class="text-primary font-bold"><%= dish.price %> EGP</span>
+                                    </div>
+                                    <p class="text-on-surface-variant font-body-md line-clamp-3 mt-2"><%= dish.description %></p>
+                                </div>
+                                <div class="flex items-center justify-between pt-4 border-t border-outline-variant/20 mt-4">
+                                    <div class="flex items-center gap-4 text-tertiary">
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">schedule</span>
+                                            <span class="font-label-sm"><%= t.preorderOnly %></span>
+                                        </div>
+                                    </div>
+                                    <a href="/menu" class="text-primary font-label-md hover:underline"><%= t.btnPreorder %></a>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- How Pre-ordering Works -->
+        <section class="py-xl px-gutter max-w-container-max mx-auto text-center">
+            <h2 class="font-headline-lg text-headline-lg mb-xl"><%= t.howItWorks %></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-lg relative">
+                <div class="hidden md:block absolute top-12 left-1/4 right-1/4 h-[1px] bg-outline-variant/50 -z-10"></div>
+                <div class="space-y-sm">
+                    <div class="w-24 h-24 bg-secondary-fixed text-on-secondary-fixed rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+                        <span class="material-symbols-outlined text-4xl">restaurant_menu</span>
+                    </div>
+                    <h4 class="font-headline-md text-headline-md"><%= t.step1Title %></h4>
+                    <p class="text-on-surface-variant font-body-md"><%= t.step1Desc %></p>
+                </div>
+                <div class="space-y-sm">
+                    <div class="w-24 h-24 bg-tertiary-fixed text-on-tertiary-fixed rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+                        <span class="material-symbols-outlined text-4xl">calendar_month</span>
+                    </div>
+                    <h4 class="font-headline-md text-headline-md"><%= t.step2Title %></h4>
+                    <p class="text-on-surface-variant font-body-md"><%= t.step2Desc %></p>
+                </div>
+                <div class="space-y-sm">
+                    <div class="w-24 h-24 bg-primary-fixed text-on-primary-fixed rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+                        <span class="material-symbols-outlined text-4xl">celebration</span>
+                    </div>
+                    <h4 class="font-headline-md text-headline-md"><%= t.step3Title %></h4>
+                    <p class="text-on-surface-variant font-body-md"><%= t.step3Desc %></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Teaser -->
+        <section class="py-xl bg-surface-container-high linen-texture">
+            <div class="px-gutter max-w-container-max mx-auto text-center">
+                <% if (featuredReviews && featuredReviews.length > 0) { %>
+                    <div class="max-w-3xl mx-auto space-y-md">
+                        <span class="material-symbols-outlined text-5xl text-primary/30">format_quote</span>
+                        <blockquote class="font-headline-md text-headline-md text-on-surface italic leading-relaxed">
+                            "<%= featuredReviews[0].comment %>"
+                        </blockquote>
+                        <div class="pt-4">
+                            <p class="font-label-md text-label-md text-primary"><%= featuredReviews[0].customer_name %></p>
+                            <p class="text-on-surface-variant text-sm font-body-md">Verified Customer • <%= featuredReviews[0].customer_region %></p>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="max-w-3xl mx-auto space-y-md">
+                        <span class="material-symbols-outlined text-5xl text-primary/30">format_quote</span>
+                        <blockquote class="font-headline-md text-headline-md text-on-surface italic leading-relaxed">
+                            "The Mahshi took me back to my childhood in Cairo. You can truly taste the effort and love in every single bite. Hayla is now our weekly family tradition."
+                        </blockquote>
+                        <div class="pt-4">
+                            <p class="font-label-md text-label-md text-primary">Noura El-Sayed</p>
+                            <p class="text-on-surface-variant text-sm font-body-md">Verified Customer • Maadi</p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-high pt-xl pb-md border-t border-outline-variant/30">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-md px-gutter max-w-container-max mx-auto text-center md:text-left font-body-md">
+            <div class="space-y-sm">
+                <img src="/images/logo/lockup.svg" alt="Hayla - Authentic Egyptian Homemade Food" class="h-10 md:h-12 w-auto mx-auto md:mx-0 mb-2" />
+                <p class="font-body-md text-body-md text-on-surface-variant pr-8"><%= t.tagline %></p>
+            </div>
+            <div class="flex flex-col gap-xs">
+                <h5 class="font-label-md text-on-surface mb-2"><%= t.viewAllItems %></h5>
+                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/about"><%= t.navStory %></a>
+                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/menu"><%= t.navMenu %></a>
+                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/contact"><%= t.navContact %></a>
+            </div>
+            <div class="flex flex-col gap-xs">
+                <h5 class="font-label-md text-on-surface mb-2">Connect</h5>
+                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="https://wa.me/<%= settings.whatsapp_number ? settings.whatsapp_number.replace(/\D/g, '') : '' %>">WhatsApp</a>
+                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Instagram</a>
+            </div>
+        </div>
+        <div class="mt-xl text-center border-t border-outline-variant/10 pt-md">
+            <p class="font-body-md text-on-surface-variant">© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.add('shadow-sm');
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hayla - Authentic Homemade Egyptian Flavors</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#b8583d",
+                    "on-background": "#1d1c18",
+                    "surface-container-high": "#ece7e1",
+                    "on-secondary-fixed": "#291800",
+                    "surface": "#fef9f2",
+                    "secondary-fixed-dim": "#fabb57",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#56423d",
+                    "secondary-fixed": "#ffddb0",
+                    "on-secondary-fixed-variant": "#614000",
+                    "tertiary-fixed-dim": "#b7cda8",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#734d00",
+                    "surface-variant": "#e6e2db",
+                    "on-primary-fixed-variant": "#7d2c14",
+                    "tertiary": "#4e6143",
+                    "on-tertiary-container": "#f8ffee",
+                    "inverse-on-surface": "#f5f0e9",
+                    "secondary-container": "#fdbe5a",
+                    "on-primary-fixed": "#3b0900",
+                    "surface-dim": "#ded9d3",
+                    "surface-container-highest": "#e6e2db",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#0f2008",
+                    "on-surface": "#1d1c18",
+                    "secondary": "#805600",
+                    "surface-tint": "#9c4329",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#fffbff",
+                    "primary": "#994127",
+                    "tertiary-container": "#667a5a",
+                    "primary-fixed-dim": "#ffb5a0",
+                    "outline-variant": "#dcc1ba",
+                    "primary-fixed": "#ffdbd1",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "background": "#fef9f2",
+                    "inverse-surface": "#32302c",
+                    "outline": "#89726c",
+                    "surface-bright": "#fef9f2",
+                    "on-tertiary-fixed-variant": "#394c2f",
+                    "tertiary-fixed": "#d3e9c3",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#ffb5a0",
+                    "surface-container-low": "#f8f3ec",
+                    "surface-container": "#f2ede6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "gutter": "24px",
+                    "sm": "12px",
+                    "lg": "48px",
+                    "md": "24px",
+                    "base": "8px",
+                    "container-max": "1200px",
+                    "xl": "80px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Quicksand"],
+                    "body-md": ["Quicksand"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "label-md": ["Quicksand"],
+                    "label-sm": ["Quicksand"],
+                    "headline-xl": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .linen-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/linen.png');
+            background-color: var(--tw-bg-opacity);
+        }
+        .brush-underline {
+            position: relative;
+        }
+        .brush-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5C20 3.5 45 1.5 99 6.5' stroke='%23994127' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .brush-underline:hover::after {
+            opacity: 1;
+        }
+        .card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px -10px rgba(192, 94, 66, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
+<nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">Hayla</span>
+</div>
+<div class="hidden md:flex gap-md items-center">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Kitchen</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-container transition-colors" href="#">Weekly Menu</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md active:scale-95 duration-200 shadow-sm hover:opacity-90 transition-all">
+                Pre-order Now
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[751px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-angle close-up shot of weathered, sun-drenched hands carefully stripping fresh Molokhia leaves onto a rustic, dark wooden table. The scene is filled with warm, golden-hour light streaming through a nearby window, illuminating dust motes in the air. Soft shadows dance across the textured wood, and a copper bowl sits nearby. The overall aesthetic is artisanal and deeply nostalgic, highlighting the soulful craft of traditional Egyptian home cooking." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyB4SU6fIP8fwq6CYh198ETumXZetX1ABul7OogiEy-V7fhm1uz_3_VhPFQN72_w-1Y_110K5vPwyv1wsHqhEDYkfrEZF75-tL_Reg5ecP5j7MDJKCnaVWnhYXHgXociq1WkZkpZTbfe8-LBzMf2cLHiZxpgsSvFPl7g4UVUR1SpSaQIxaBOwDUar1-_Ha3Nck0cOtzl1lnsJS8UpWtfTmsaEjTO_9BZ_uPBGswpMnltU_rbCt8C2buioIbBbC3nz1WAj1KIhffI2V"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-gutter max-w-container-max mx-auto w-full">
+<div class="max-w-2xl space-y-md">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm uppercase tracking-wider">Homemade with Heart</span>
+<h1 class="font-headline-xl text-headline-xl text-on-background leading-tight">
+                        Authentic Flavors, Straight from the <span class="text-primary italic">Heart of the Home.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        Experience the warmth of a true Egyptian kitchen. We prepare traditional recipes with artisanal care, delivered to your table every Friday.
+                    </p>
+<div class="flex gap-4 pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md shadow-lg hover:shadow-xl transition-all active:scale-95">
+                            Browse This Week's Menu
+                        </button>
+<button class="border-2 border-tertiary text-tertiary px-8 py-4 rounded-lg font-label-md hover:bg-tertiary/5 transition-all">
+                            Our Story
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Story Hook -->
+<section class="py-xl px-gutter max-w-container-max mx-auto">
+<div class="grid md:grid-cols-2 gap-xl items-center">
+<div class="space-y-md">
+<h2 class="font-headline-lg text-headline-lg text-primary">A philosophy of "Made with Love"</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        At Hayla, we believe that food is more than just sustenance—it's a language of care. Every jar of Mahshi and every bowl of Molokhia is prepared just as we would for our own family. We source the freshest local ingredients, using techniques passed down through generations, to ensure that every bite carries the soulful heritage of Egyptian hospitality.
+                    </p>
+<a class="inline-block font-label-md text-label-md text-primary brush-underline py-1" href="#">Discover our heritage</a>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-xl transform rotate-2">
+<img class="w-full h-full object-cover" data-alt="A warm, intimate portrait of an elderly Egyptian woman with a kind smile, wearing a traditional embroidered apron. She is standing in a brightly lit kitchen filled with terracotta pots and hanging herbs. Soft morning light catches the steam rising from a clay pot she is tending. The photograph has a soft-focus, film-like quality with warm terracotta and olive green tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTpGnCXxuiwRleIpXj4vZUJssVVHHFnlXoiXRc2kvRwKG1LYOkuguzYtSsVWdcstAvJQmIR_NEwsx5Rt-QhBCSfE2n12RXrKS47qdOOMeh1tj6umHnNS3T7jjdAJDl8HLx76T9cC-NuLNC7OjP6uJjji0hcas6NSe0DckRHJ0c6HAcJKdBdatqMsWv1DTh15Q8C-Ueg51bw476Ol8BDVVeQGc2PVzzwwA9OgUncYXLSf3Or7_WPXzzU4rH7mi2Nhl-3-aMUhgJc-hS"/>
+</div>
+<div class="absolute -bottom-6 -left-6 w-48 h-48 rounded-xl overflow-hidden shadow-2xl border-4 border-white transform -rotate-3 hidden md:block">
+<img class="w-full h-full object-cover" data-alt="A close-up detail shot of freshly picked green herbs and vibrant red tomatoes in a woven wicker basket sitting on a white linen cloth. The lighting is bright and fresh, emphasizing the natural textures and organic quality of the ingredients. Earthy ochre and rich olive tones dominate the palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Ac8gSuKP3L2RX6USv7yVgObC3g6N5rbbFYCeqR89U2Wrblo_-Jp2fhHxMbJugqcCzIUC2A2eGfNj3feOlE8Ax97fC-M9AzRwZWuhk4P3kCDGE1RQkCUN6jZrXN9Pf26pcCRV5tvDcRX76ddAUt9BuqKbiXcBeaynaKjrSjG9IDpvx5LSl4CYhhDtA4BNUwihNS-Bwk73lENGJp_pVCzTSk0CAbgID8e7p2LLVG-a4d3hQ6bd8inCTeEDtkotezNGanAwv5mC5rZW"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Weekly Menu -->
+<section class="py-xl bg-surface-container-low">
+<div class="px-gutter max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Weekly Menu Preview</h2>
+<p class="font-body-md text-on-surface-variant">Limited portions, unlimited soul.</p>
+</div>
+<a class="text-primary font-label-md hover:underline decoration-primary/30 underline-offset-4" href="#">View All Items</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<div class="bg-surface rounded-lg overflow-hidden card-lift group">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stunning, top-down photograph of a traditional Egyptian Musakaa served in an artisanal clay dish. The layers of fried eggplant, spiced minced meat, and rich tomato sauce are glistening under soft, diffused lighting. Garnished with fresh parsley, the dish looks incredibly appetizing. The styling is rustic-chic with a few scattered spices on a beige linen background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK91NN04A4yYof7MzZcuHT_474MpgZ_WV70GA_gRdOa2B8s9NYw-ggQ-ipvGddZdppybCAhQe-dOiOynpLfsT0gicdj8OR4igQUUTbBJCgDrsMdT_w0iUcaYxD3K6h2pjvPB8GuBrrdPDpbEz_TEnXKZe0JL3eprO8YpPYkkU_yShWNv6LbO5LcHp3n5lP_igbiHJi_x3O8XhiHnqqhOQkHWhyGU4_ued3OFuzdgfdWDzagYLD2MJ_uondiviYdCInmwAgsk_rmKd6"/>
+<span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm">Chef's Special</span>
+</div>
+<div class="p-md space-y-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">Mom's Classic Musakaa</h3>
+<span class="text-primary font-bold">180 EGP</span>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">Roasted eggplant layers with seasoned minced beef in a rich, slow-simmered tomato reduction.</p>
+<div class="flex items-center gap-4 pt-4 text-tertiary">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="font-label-sm">Pre-order Only</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm">4.9 (120+)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-lg overflow-hidden card-lift group">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a classic Egyptian Koshary bowl, showing vibrant layers of pasta, rice, black lentils, and chickpeas topped with a heap of crispy caramelized onions. A small bowl of spicy tomato dacca sits next to it. The lighting is warm and invites the viewer to taste. The aesthetic is clean and modern yet authentic to its street-food roots." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ7rUfm3A7vkuis7w52g8v-DSdn2dDfCaujYCLYulQdbbc_kXbBl7bSN5UsdX-R0U_48e_AIGcKyg6hqyoc7ibd_bWhHWR6288NnrbC7tIageGj9RK8QY88e4QxjcP3ZGtbdSNuShwcH3nREVtKEnRmFqAO1Gh_nDc0QaGde8Ur1dvovxYGg5T5YzI0OzmLubJNvBwysu3eH0nVgOhMVc68xXvZfqAHTn6y-5SUeVwOEBAI5uURqxrOOeH8R_-8GkrKBrw_9cpO4Pz"/>
+<span class="absolute top-4 left-4 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-sm">Family Size Available</span>
+</div>
+<div class="p-md space-y-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">Traditional Koshary</h3>
+<span class="text-primary font-bold">120 EGP</span>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">Our signature blend of grains, pulses, and crispy onions served with secret-recipe tomato 'Dacca'.</p>
+<div class="flex items-center gap-4 pt-4 text-tertiary">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="local_dining">local_dining</span>
+<span class="font-label-sm">Vegetarian</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm">5.0 (85+)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-lg overflow-hidden card-lift group">
+<div class="h-64 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautiful spread of mixed Mahshi (stuffed vegetables) including zucchini, bell peppers, and grape leaves, arranged artistically on a large ceramic platter. The vegetables are plump and glistening with a light glaze. The scene is set on a light-colored wooden table with a side of creamy yogurt dip. Soft, natural daylight illuminates the vibrant greens and reds of the dish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFld-nLtlTOkDUJSmX9kpQBOCWnTXe_gIIsFvIdEP1w8ExLP4Aeepbc1E67uHQM1qVM62zYrPH-opkjFQO7cniXg5td-s1I-pGUO9VfROVM1CK-iGjS-lPVTjmKKdNZEmrWfElcPk-AQMgw33SFqUUSkzRB0g722gDRj-nsC3uHPP6nueBOlpbBpWVeSemudyawUakCMq1o9luFaiZieydwd3W89sFlt6VJXb0wf8OyceOxLVAv7wDndFnXJz2LEEM01VPIqa1H4dp"/>
+</div>
+<div class="p-md space-y-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md">Grandma's Mahshi</h3>
+<span class="text-primary font-bold">210 EGP</span>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">Hand-rolled grape leaves and stuffed seasonal vegetables with a fragrant herb and rice filling.</p>
+<div class="flex items-center gap-4 pt-4 text-tertiary">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-sm">Bestseller</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm">4.8 (210+)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How Pre-ordering Works -->
+<section class="py-xl px-gutter max-w-container-max mx-auto text-center">
+<h2 class="font-headline-lg text-headline-lg mb-xl">How Pre-ordering Works</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg relative">
+<!-- Connector lines for desktop -->
+<div class="hidden md:block absolute top-12 left-1/4 right-1/4 h-[1px] bg-outline-variant/50 -z-10"></div>
+<div class="space-y-sm">
+<div class="w-24 h-24 bg-secondary-fixed text-on-secondary-fixed rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+<span class="material-symbols-outlined text-4xl" data-icon="restaurant_menu">restaurant_menu</span>
+</div>
+<h4 class="font-headline-md text-headline-md">1. Choose Your Dishes</h4>
+<p class="text-on-surface-variant font-body-md">Browse our rotating weekly menu and select your favorites.</p>
+</div>
+<div class="space-y-sm">
+<div class="w-24 h-24 bg-tertiary-fixed text-on-tertiary-fixed rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+<span class="material-symbols-outlined text-4xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<h4 class="font-headline-md text-headline-md">2. Order by Tuesday</h4>
+<p class="text-on-surface-variant font-body-md">Place your order before Tuesday midnight to secure your spot for the week.</p>
+</div>
+<div class="space-y-sm">
+<div class="w-24 h-24 bg-primary-fixed text-on-primary-fixed rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+<span class="material-symbols-outlined text-4xl" data-icon="celebration">celebration</span>
+</div>
+<h4 class="font-headline-md text-headline-md">3. Enjoy on Friday</h4>
+<p class="text-on-surface-variant font-body-md">Freshly prepared and delivered to your doorstep every Friday afternoon.</p>
+</div>
+</div>
+</section>
+<!-- Testimonial Teaser -->
+<section class="py-xl bg-surface-container-high linen-texture">
+<div class="px-gutter max-w-container-max mx-auto text-center">
+<div class="max-w-3xl mx-auto space-y-md">
+<span class="material-symbols-outlined text-5xl text-primary/30" data-icon="format_quote">format_quote</span>
+<blockquote class="font-headline-md text-headline-md text-on-surface italic leading-relaxed">
+                        "The Mahshi took me back to my childhood in Cairo. You can truly taste the effort and love in every single bite. Hayla is now our weekly family tradition."
+                    </blockquote>
+<div class="pt-4">
+<p class="font-label-md text-label-md text-primary">Noura El-Sayed</p>
+<p class="text-on-surface-variant text-sm font-body-md">Verified Customer • Maadi</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high pt-xl pb-md border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md px-gutter max-w-container-max mx-auto text-center md:text-left">
+<div class="space-y-sm">
+<span class="font-headline-md text-headline-md text-primary block">Hayla</span>
+<p class="font-body-md text-on-surface-variant pr-8">Bringing the authentic taste of Egyptian homes to your modern table, one Friday at a time.</p>
+</div>
+<div class="flex flex-col gap-xs">
+<h5 class="font-label-md text-on-surface mb-2">Explore</h5>
+<a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Our Kitchen</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-xs">
+<h5 class="font-label-md text-on-surface mb-2">Connect</h5>
+<a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">WhatsApp</a>
+<a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Instagram</a>
+<div class="flex gap-4 justify-center md:justify-start mt-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="facebook">face_nod</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="share">share</span>
+</div>
+</div>
+</div>
+<div class="mt-xl text-center border-t border-outline-variant/10 pt-md">
+<p class="font-body-md text-on-surface-variant">© 2024 Hayla. Authentic Homemade Flavors.</p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for navbar transparency shift
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.add('shadow-sm');
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

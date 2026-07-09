@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Hayla - The Heritage of Our Home Kitchen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .linen-texture {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("https://www.transparenttextures.com/patterns/linen-design.png");
+        }
+        .brush-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .brush-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: #994127;
+            opacity: 0.2;
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 10 Q 25 5, 50 10 T 100 10" stroke="black" stroke-width="5" fill="none" /></svg>');
+            mask-size: cover;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+        .brush-underline:hover::after {
+            transform: scaleX(1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#b8583d",
+                        "on-background": "#1d1c18",
+                        "surface-container-high": "#ece7e1",
+                        "on-secondary-fixed": "#291800",
+                        "surface": "#fef9f2",
+                        "secondary-fixed-dim": "#fabb57",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#56423d",
+                        "secondary-fixed": "#ffddb0",
+                        "on-secondary-fixed-variant": "#614000",
+                        "tertiary-fixed-dim": "#b7cda8",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#734d00",
+                        "surface-variant": "#e6e2db",
+                        "on-primary-fixed-variant": "#7d2c14",
+                        "tertiary": "#4e6143",
+                        "on-tertiary-container": "#f8ffee",
+                        "inverse-on-surface": "#f5f0e9",
+                        "secondary-container": "#fdbe5a",
+                        "on-primary-fixed": "#3b0900",
+                        "surface-dim": "#ded9d3",
+                        "surface-container-highest": "#e6e2db",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#0f2008",
+                        "on-surface": "#1d1c18",
+                        "secondary": "#805600",
+                        "surface-tint": "#9c4329",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#fffbff",
+                        "primary": "#994127",
+                        "tertiary-container": "#667a5a",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "outline-variant": "#dcc1ba",
+                        "primary-fixed": "#ffdbd1",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "background": "#fef9f2",
+                        "inverse-surface": "#32302c",
+                        "outline": "#89726c",
+                        "surface-bright": "#fef9f2",
+                        "on-tertiary-fixed-variant": "#394c2f",
+                        "tertiary-fixed": "#d3e9c3",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#ffb5a0",
+                        "surface-container-low": "#f8f3ec",
+                        "surface-container": "#f2ede6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px",
+                        "md": "24px",
+                        "base": "8px",
+                        "container-max": "1200px",
+                        "xl": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Quicksand"],
+                        "body-md": ["Quicksand"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "label-md": ["Quicksand"],
+                        "label-sm": ["Quicksand"],
+                        "headline-xl": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="linen-texture"></div>
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
+<nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200">menu</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">Hayla</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-primary border-b-2 border-primary" href="#">About Us</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Menu</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md active:scale-95 duration-200 shadow-sm hover:bg-primary-container transition-all">
+                Pre-order Now
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-xl pb-lg overflow-hidden">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-12 gap-lg items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<span class="inline-block px-4 py-1.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm mb-6">Since 1984</span>
+<h1 class="font-headline-xl text-headline-xl mb-6 text-on-background">The Soul Behind <span class="text-primary">Hayla</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-lg">
+                        Meet Chef Amira, who turned her passion for traditional Egyptian hospitality into a movement that celebrates the art of the homemade meal.
+                    </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-[1px] bg-outline-variant"></div>
+<p class="font-label-md italic text-primary">"Food is the bridge between generations."</p>
+</div>
+</div>
+<div class="md:col-span-7 order-1 md:order-2">
+<div class="relative rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(192,94,66,0.1)]">
+<img class="w-full aspect-[4/3] object-cover rounded-xl transition-transform duration-700 hover:scale-105" data-alt="A warm, cinematic portrait of a middle-aged Egyptian woman with a kind smile, wearing a modern yet traditional apron, standing in a sunlit, rustic kitchen. The kitchen features warm wooden textures, hanging copper pots, and fresh herbs on a marble counter. Soft, natural light spills through a window, highlighting the steam from a pot and the authentic, soulful atmosphere of a high-end Egyptian home kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXcOZ2feUYPJDQ41zh5VmipxThj6IpuCQzBeHPwB-rCABjiA6vzrJd9DupxZbdZvewtQh9g8YSMs7c6CbdPvWZTECbhW8md8eXE19E0jYKFg7ZQ3ARqCYtZ1hlRLjyDe0ZfswacY7s71eRTPhMiPKLNz-xiEH9ywymc_i9W7H7UanE-FFB83iLKR7SvC5Dh5FSM4vYve-T3GV30bYWFdCf4cCZOajWQEbulV9x27Cv9Fl16sMDBOsoUDkU-bf50AuPRpsWueArSnvJ"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Story Section -->
+<section class="bg-surface-container-low py-xl">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-4">The Heritage of Our Home Kitchen</h2>
+<div class="w-24 h-1 bg-primary mx-auto rounded-full opacity-30"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="space-y-6">
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                            Egyptian culinary heritage is a tapestry of civilizations, where every spice tells a story and every technique is a sacred inheritance. At Hayla, we honor the "Sitt al-Bayt" (Lady of the House) tradition—the silent architects of Egyptian culture.
+                        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                            What started as intimate family gatherings on Friday afternoons slowly evolved. We realized that the warmth of our table deserved to be shared. We transitioned from our kitchen to yours, bringing along the same meticulous care and generations-old techniques passed down through whispers and shared bowls of Molokhia.
+                        </p>
+<div class="pt-4">
+<a class="brush-underline font-label-md text-primary uppercase tracking-widest" href="#">Discover our journey</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4 pt-12">
+<img class="w-full aspect-square object-cover rounded-lg shadow-sm" data-alt="Close-up of weathered, experienced hands kneading dough on a flour-dusted wooden surface. The lighting is low-key and dramatic, emphasizing the textures of the dough and the rustic charm of a traditional bakery setting. The color palette is earthy and warm, focusing on browns, creams, and the rich ochre of the wood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1_IRe5TzBIygUBTpFcSbapOqDvFrm-ouTSrIjQ1FWg_csw8_s-IkigoQrfJY0JRncijgRC6rzpwWsiiZ7B3rEChQgL4zqknF6mrBFD0cV6lE1Lje5uC5WgWNtWiEs1sQEm3ThN-v5nyA3YsE5pZjI3wrbk9CoLEae4QBLCGlwvbEy_71S0BYyjb7IDWIjW4yfHXHddB6Gw7I3AH_YyYtT-EGbP40yJzwcCqbuHr3SottwG6fAyicaRI4UAk2t_EZJOgPBLtkHXW2V"/>
+<img class="w-full aspect-square object-cover rounded-lg shadow-sm" data-alt="A beautifully arranged Egyptian mezze platter with colorful dips like hummus and baba ganoush, garnished with fresh pomegranate seeds and olive oil. The setting is a minimalist wooden table with linen napkins. High-quality food photography with a shallow depth of field and warm, inviting lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoyszgleJ2eZPTwS5Z1buIP8Ny2heZ10Xt1CMDhKnBV57GclqCeNKDkLfYKxufCgBFWDA4PiAWD2vTegol7dvI31COHP1zacUqMPd79tXvmcz-tDk63-tUNR1qRy1q6fB8Ez-X34hHmehQRVceinBtZEMaLMjzeKwp3h82Ruh_XbKNtkuXUoIe9-qljHpujbmKEKWj8lBDWSgMs_uR6KNI7XZDUatGIsYImQKrHBx6gggxLJS69RjIB92OokGP_quGMJAsW7yOEn_T"/>
+</div>
+<div class="space-y-4">
+<img class="w-full aspect-square object-cover rounded-lg shadow-sm" data-alt="A vintage brass mortar and pestle sitting on a rustic stone countertop next to bundles of fresh rosemary and dried cinnamon sticks. The scene is atmospheric and evocative of traditional Egyptian cooking methods. The colors are deep and saturated, leaning into olive greens and warm metallic tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAorh7fAuKbglmlMMU38bf6PzjNTR8WJU202wq8BLfPjyU2gdbwz15eWHBxeTNpnPSO7JZXSlMK9Lmjxux_piazO4DErbhYqZ8KDrGBgrH4BeCMP2fcB9eHhAJ9_9aTKU9Ybo_hSKdeF6ywaRNdekIb0EZQDkRivqsL0LDKIiLKtgJmcXzOpxQt-1xwIY08VsQoHzSS0j3XUhT2n72PX9ltKHmg_ahPRH-JDmUQSFgwH-2vWIlET6UPG2f6Eb24HmfwmEMoI9MV3Rm7"/>
+<img class="w-full aspect-square object-cover rounded-lg shadow-sm" data-alt="A group of diverse people laughing and sharing a large meal around a rustic wooden table in a dimly lit, cozy room. The mood is one of joy and community. The lighting comes from warm overhead pendants, creating a soft glow on the food and the smiling faces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUys7m3qX9lWS9sGnrFLXLy3ENBmJ2tywMG6pWQP28r0u_HNwaOL-oheZjCBjE_F160SWKhdx5VTQhM0Nf0bP-5GNHQKFePpYWciAm6iQl25x6N7XazImYNa5JXGDgbYrrJWh8xlLKGQ_fGnunOMStxrKNBFvenjXvPbffiESe1gUuQBXNoZv3NKmXwF0w_0Xn-ydJDL1Em-cR1P-WN2vSgYHdC7kQ22imTCrS9gtc4ab-saO5WDJiVvQ7-9Q6qggn6V9ltZBi4RL5"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- What makes it Homemade? Section -->
+<section class="py-xl bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-end mb-lg gap-6">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg mb-4">What makes it Homemade?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Beyond the recipes, it's the rhythm of our kitchen that defines us. We reject industrial speed in favor of artisanal patience.</p>
+</div>
+<button class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-label-md hover:bg-primary/5 transition-colors">Our Full Menu</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Value 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-5px_rgba(192,94,66,0.05)] border border-outline-variant/20 hover:-translate-y-1 transition-transform duration-300">
+<div class="w-14 h-14 bg-tertiary-fixed rounded-full flex items-center justify-center text-on-tertiary-fixed mb-6">
+<span class="material-symbols-outlined text-3xl">local_mall</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-3">Fresh Local Ingredients</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">We source our produce from local Nile Delta farmers every morning, ensuring that every vegetable carries the peak flavor of the season.</p>
+</div>
+<!-- Value 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-5px_rgba(192,94,66,0.05)] border border-outline-variant/20 hover:-translate-y-1 transition-transform duration-300">
+<div class="w-14 h-14 bg-secondary-fixed rounded-full flex items-center justify-center text-on-secondary-fixed mb-6">
+<span class="material-symbols-outlined text-3xl">auto_stories</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-3">Traditional Recipes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">No shortcuts, no modern substitutes. We use the exact ratios of spices and slow-cooking times perfected by our grandmothers.</p>
+</div>
+<!-- Value 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_-5px_rgba(192,94,66,0.05)] border border-outline-variant/20 hover:-translate-y-1 transition-transform duration-300">
+<div class="w-14 h-14 bg-primary-fixed rounded-full flex items-center justify-center text-on-primary-fixed mb-6">
+<span class="material-symbols-outlined text-3xl">restaurant</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-3">Small Batch Cooking</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">By cooking in small quantities, we maintain the soul of the dish. Each pot is tasted and adjusted by our head chef personally.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl px-gutter">
+<div class="max-w-container-max mx-auto relative rounded-3xl overflow-hidden bg-primary-container p-lg md:p-xl text-center text-on-primary-container">
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-6">Experience the Taste of Home</h2>
+<p class="font-body-lg text-body-lg mb-10 max-w-2xl mx-auto opacity-90">Join our community of food lovers and bring the authentic flavors of Egypt to your dining table tonight.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-surface text-primary px-10 py-4 rounded-lg font-label-md shadow-lg active:scale-95 transition-all">Order Online</button>
+<button class="border-2 border-surface/50 text-surface px-10 py-4 rounded-lg font-label-md hover:bg-surface/10 transition-all">Find a Kitchen</button>
+</div>
+</div>
+<!-- Abstract Texture Overlay for CTA -->
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-20 pointer-events-none"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-tertiary/20 rounded-full blur-3xl"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-high border-t border-outline-variant/30 pt-xl pb-md">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md px-gutter max-w-container-max mx-auto text-center md:text-left">
+<div>
+<span class="font-headline-md text-headline-md text-primary block mb-4">Hayla</span>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Bringing the soul of the Egyptian home kitchen to your modern lifestyle.</p>
+<div class="flex justify-center md:justify-start gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">chat</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">photo_camera</span>
+</a>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest">Navigation</h4>
+<nav class="flex flex-col gap-2 font-body-md text-on-surface-variant">
+<a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">About Us</a>
+<a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Our Kitchen</a>
+<a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Contact</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest">Connect</h4>
+<nav class="flex flex-col gap-2 font-body-md text-on-surface-variant">
+<a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">WhatsApp</a>
+<a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Instagram</a>
+<p class="pt-4 text-xs">Cairo, Egypt | Heliopolis Kitchen</p>
+</nav>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter mt-xl pt-md border-t border-outline-variant/20 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant/70">© 2024 Hayla. Authentic Homemade Flavors.</p>
+</div>
+</footer>
+<script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

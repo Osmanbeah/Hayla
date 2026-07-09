@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hayla Admin Panel</title>
+    <link rel="icon" type="image/svg+xml" href="/images/logo/icon.svg" />
+    <link rel="apple-touch-icon" href="/images/logo/icon.svg" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            "colors": {
+              "primary": "#994127",
+              "surface": "#fef9f2",
+              "on-surface": "#1d1c18",
+              "on-surface-variant": "#56423d",
+              "background": "#fef9f2",
+              "outline-variant": "#dcc1ba"
+            },
+            "fontFamily": {
+              "body-md": ["Quicksand"],
+              "headline-md": ["Playfair Display"]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-body-md min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="/images/logo/icon.svg" alt="Hayla Icon" class="h-8 w-auto" />
+                <span class="font-headline-md text-xl font-bold text-primary">Hayla Kitchen</span>
+                <span class="bg-primary/10 text-primary text-xs px-2.5 py-0.5 rounded-full font-bold">Admin Panel</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="/" target="_blank" class="text-sm text-gray-500 hover:text-primary flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">open_in_new</span> Live Site
+                </a>
+                <a href="/admin/logout" class="bg-red-50 hover:bg-red-100 text-red-600 text-sm px-4 py-2 rounded-lg font-semibold transition-all">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-8 w-full flex-grow flex flex-col md:flex-row gap-6">
+        <!-- Sidebar Navigation -->
+        <aside class="md:w-64 flex-shrink-0">
+            <nav class="flex flex-col gap-1.5 bg-white p-4 rounded-xl border border-gray-200 shadow-sm sticky top-24">
+                <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn active w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all">
+                    <span class="material-symbols-outlined text-xl">dashboard</span> Dashboard Overview
+                </button>
+                <button onclick="switchTab('orders')" id="tab-btn-orders" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all">
+                    <span class="material-symbols-outlined text-xl">shopping_cart</span> Orders Management
+                </button>
+                <button onclick="switchTab('dishes')" id="tab-btn-dishes" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all">
+                    <span class="material-symbols-outlined text-xl">restaurant_menu</span> Menu dishes
+                </button>
+                <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all">
+                    <span class="material-symbols-outlined text-xl">rate_review</span> Customer Reviews
+                </button>
+                <button onclick="switchTab('settings')" id="tab-btn-settings" class="tab-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all">
+                    <span class="material-symbols-outlined text-xl">settings</span> Settings & Password
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="flex-grow bg-white p-6 rounded-xl border border-gray-200 shadow-sm min-h-[500px]">
+            <% if (success) { %>
+                <div class="mb-6 bg-green-50 border border-green-200 text-green-700 p-4 rounded-lg flex items-center gap-2">
+                    <span class="material-symbols-outlined text-green-500">check_circle</span>
+                    <span class="font-semibold text-sm">Action completed successfully: <%= success.replace('_', ' ') %></span>
+                </div>
+            <% } %>
+
+            <!-- TAB: OVERVIEW -->
+            <section id="tab-content-overview" class="tab-content space-y-8">
+                <h2 class="font-headline-md text-2xl font-bold text-gray-900">Dashboard Overview</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 border border-gray-150 p-6 rounded-xl space-y-1">
+                        <p class="text-sm text-gray-500 font-semibold uppercase tracking-wider">Total Orders Count</p>
+                        <p class="text-3xl font-bold text-primary"><%= stats.orderCount %></p>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-150 p-6 rounded-xl space-y-1">
+                        <p class="text-sm text-gray-500 font-semibold uppercase tracking-wider">Total Revenue</p>
+                        <p class="text-3xl font-bold text-primary"><%= stats.totalRevenue %> EGP</p>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-150 p-6 rounded-xl space-y-1">
+                        <p class="text-sm text-gray-500 font-semibold uppercase tracking-wider">Most-Ordered Dish</p>
+                        <p class="text-lg font-bold text-primary mt-1"><%= stats.topDish %></p>
+                    </div>
+                </div>
+                <div class="p-6 bg-surface/50 border border-outline-variant/30 rounded-xl space-y-3">
+                    <h3 class="font-semibold text-lg text-primary">Pre-order Setup Parameters</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-sm">
+                        <div>
+                            <p class="text-gray-500 font-bold">Deadline Day (EN / AR)</p>
+                            <p class="font-semibold"><%= settings.deadline_day %> / <%= settings.deadline_day_ar %></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 font-bold">Deadline Time (EN / AR)</p>
+                            <p class="font-semibold"><%= settings.deadline_time %> / <%= settings.deadline_time_ar %></p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 font-bold">Fulfillment Date (EN / AR)</p>
+                            <p class="font-semibold"><%= settings.delivery_date %> / <%= settings.delivery_date_ar %></p>
+                        </div>
+                        <div class="col-span-2 md:col-span-3 pt-2 border-t border-gray-100">
+                            <p class="text-gray-500 font-bold">WhatsApp Contact Number</p>
+                            <p class="font-semibold text-base text-primary"><%= settings.whatsapp_number || 'Not Set (WhatsApp redirection disabled)' %></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB: ORDERS -->
+            <section id="tab-content-orders" class="tab-content hidden space-y-6">
+                <h2 class="font-headline-md text-2xl font-bold text-gray-900">Orders Management</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                <th class="p-3">Order ID</th>
+                                <th class="p-3">Customer</th>
+                                <th class="p-3">Method / Address</th>
+                                <th class="p-3">Items Order</th>
+                                <th class="p-3">Total</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-150 text-sm">
+                            <% orders.forEach(order => { %>
+                                <tr>
+                                    <td class="p-3 font-bold text-gray-900">#<%= order.id %></td>
+                                    <td class="p-3">
+                                        <p class="font-semibold"><%= order.customer_name %></p>
+                                        <p class="text-xs text-gray-500"><%= order.customer_phone %></p>
+                                    </td>
+                                    <td class="p-3">
+                                        <p class="capitalize font-semibold text-xs"><%= order.delivery_type %> (<%= order.payment_method.toUpperCase() %>)</p>
+                                        <% if (order.delivery_type === 'delivery') { %>
+                                            <p class="text-xs text-gray-500 max-w-xs truncate" title="<%= order.address %>"><%= order.address %></p>
+                                        <% } %>
+                                    </td>
+                                    <td class="p-3 text-xs space-y-1">
+                                        <% order.items.forEach(item => { %>
+                                            <p><%= item.quantity %> x <%= item.name %></p>
+                                        <% }) %>
+                                    </td>
+                                    <td class="p-3 font-bold text-primary"><%= order.total_amount %> EGP</td>
+                                    <td class="p-3">
+                                        <form action="/admin/orders/status/<%= order.id %>" method="POST">
+                                            <select name="status" onchange="this.form.submit()" class="text-xs rounded border-gray-300 p-1.5 focus:border-primary focus:ring-primary">
+                                                <option value="Pending Payment Confirmation" <%= order.status === 'Pending Payment Confirmation' ? 'selected' : '' %>>Pending Payment</option>
+                                                <option value="Cash on Delivery – Confirmed" <%= order.status === 'Cash on Delivery – Confirmed' ? 'selected' : '' %>>COD Confirmed</option>
+                                                <option value="Paid" <%= order.status === 'Paid' ? 'selected' : '' %>>Paid / Confirmed</option>
+                                                <option value="Completed" <%= order.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                                                <option value="Cancelled" <%= order.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                    <td class="p-3 text-right">
+                                        <form action="/admin/orders/delete/<%= order.id %>" method="POST" onsubmit="return confirm('Delete order #<%= order.id %>?');">
+                                            <button type="submit" class="text-red-500 hover:text-red-700">
+                                                <span class="material-symbols-outlined text-lg">delete</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB: DISHES -->
+            <section id="tab-content-dishes" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-headline-md text-2xl font-bold text-gray-900">Menu Management</h2>
+                    <button onclick="openDishModal()" class="bg-primary text-white text-sm px-4 py-2.5 rounded-lg font-semibold flex items-center gap-1 shadow hover:opacity-90 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-[18px]">add</span> Add Menu Item
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <% dishes.forEach(dish => { %>
+                        <div class="bg-gray-50 border border-gray-150 p-4 rounded-xl flex gap-4 items-center justify-between">
+                            <div class="flex gap-4 items-center">
+                                <img src="<%= dish.photo_url %>" class="w-16 h-16 object-cover rounded-lg border border-gray-200" alt="<%= dish.name %>"/>
+                                <div>
+                                    <h4 class="font-bold"><%= dish.name %> / <%= dish.name_ar %></h4>
+                                    <p class="text-xs text-gray-500"><%= dish.price %> EGP | Stock: <%= dish.stock_limit === -1 ? 'Unlimited' : dish.stock_limit %></p>
+                                    <div class="flex gap-2 mt-1">
+                                        <% if (dish.is_available) { %>
+                                            <span class="bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Available</span>
+                                        <% } else { %>
+                                            <span class="bg-red-100 text-red-800 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Sold Out</span>
+                                        <% } %>
+                                        <% if (dish.is_chef_special) { %>
+                                            <span class="bg-yellow-100 text-yellow-800 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Chef's Special</span>
+                                        <% } %>
+                                        <% if (dish.is_vegetarian) { %>
+                                            <span class="bg-emerald-100 text-emerald-800 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Veg</span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <button onclick='openEditDishModal(<%= JSON.stringify(dish) %>)' class="text-gray-500 hover:text-primary">
+                                    <span class="material-symbols-outlined text-lg">edit</span>
+                                </button>
+                                <form action="/admin/dishes/delete/<%= dish.id %>" method="POST" onsubmit="return confirm('Delete dish &quot;<%= dish.name %>&quot;?');">
+                                    <button type="submit" class="text-red-500 hover:text-red-700">
+                                        <span class="material-symbols-outlined text-lg">delete</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </section>
+
+            <!-- TAB: REVIEWS -->
+            <section id="tab-content-reviews" class="tab-content hidden space-y-6">
+                <h2 class="font-headline-md text-2xl font-bold text-gray-900">Reviews Management</h2>
+                <div class="space-y-4">
+                    <% reviews.forEach(review => { %>
+                        <div class="bg-gray-50 border border-gray-150 p-4 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                            <div class="space-y-1">
+                                <div class="flex gap-2 items-center">
+                                    <h4 class="font-bold text-gray-900"><%= review.customer_name %> (<%= review.customer_name_ar %>)</h4>
+                                    <span class="text-xs text-gray-500"><%= review.customer_region || 'Cairo' %> / <%= review.customer_region_ar %></span>
+                                    <div class="flex">
+                                        <% for (let i = 1; i <= 5; i++) { %>
+                                            <span class="material-symbols-outlined text-secondary text-xs" style="font-variation-settings: 'FILL' <%= i <= review.rating ? 1 : 0 %>;">star</span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-600 italic">"<%= review.comment %>"</p>
+                                <p class="text-xs text-gray-400 italic">"<%= review.comment_ar %>"</p>
+                            </div>
+                            
+                            <div class="flex gap-2 items-center">
+                                <form action="/admin/reviews/toggle/<%= review.id %>" method="POST">
+                                    <input type="hidden" name="is_approved" value="<%= review.is_approved ? 0 : 1 %>"/>
+                                    <button type="submit" class="text-xs px-3 py-1.5 rounded-lg font-bold border transition-colors <%= review.is_approved ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100' %>">
+                                        <%= review.is_approved ? 'Hide review' : 'Approve' %>
+                                    </button>
+                                </form>
+                                <form action="/admin/reviews/delete/<%= review.id %>" method="POST" onsubmit="return confirm('Delete review?');">
+                                    <button type="submit" class="text-red-500 hover:text-red-700 p-1">
+                                        <span class="material-symbols-outlined text-lg">delete</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </section>
+
+            <!-- TAB: SETTINGS -->
+            <section id="tab-content-settings" class="tab-content hidden space-y-6">
+                <h2 class="font-headline-md text-2xl font-bold text-gray-900">Settings & Admin Parameters</h2>
+                <form action="/admin/settings" method="POST" class="max-w-xl space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">Deadline Day (English)</label>
+                            <select name="deadline_day" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm">
+                                <option value="Monday" <%= settings.deadline_day === 'Monday' ? 'selected' : '' %>>Monday</option>
+                                <option value="Tuesday" <%= settings.deadline_day === 'Tuesday' ? 'selected' : '' %>>Tuesday</option>
+                                <option value="Wednesday" <%= settings.deadline_day === 'Wednesday' ? 'selected' : '' %>>Wednesday</option>
+                                <option value="Thursday" <%= settings.deadline_day === 'Thursday' ? 'selected' : '' %>>Thursday</option>
+                                <option value="Friday" <%= settings.deadline_day === 'Friday' ? 'selected' : '' %>>Friday</option>
+                                <option value="Saturday" <%= settings.deadline_day === 'Saturday' ? 'selected' : '' %>>Saturday</option>
+                                <option value="Sunday" <%= settings.deadline_day === 'Sunday' ? 'selected' : '' %>>Sunday</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">Deadline Day (Arabic)</label>
+                            <input type="text" name="deadline_day_ar" value="<%= settings.deadline_day_ar || 'الثلاثاء' %>" placeholder="مثال: الثلاثاء" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm" required/>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">Deadline Time (English)</label>
+                            <input type="text" name="deadline_time" value="<%= settings.deadline_time %>" placeholder="e.g. 8:00 PM" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm" required/>
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">Deadline Time (Arabic)</label>
+                            <input type="text" name="deadline_time_ar" value="<%= settings.deadline_time_ar || '٨:٠٠ مساءً' %>" placeholder="مثال: ٨:٠٠ مساءً" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm" required/>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">Fulfillment Date (English)</label>
+                            <input type="text" name="delivery_date" value="<%= settings.delivery_date %>" placeholder="e.g. Friday" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm" required/>
+                        </div>
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">Fulfillment Date (Arabic)</label>
+                            <input type="text" name="delivery_date_ar" value="<%= settings.delivery_date_ar || 'الجمعة' %>" placeholder="مثال: الجمعة" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm" required/>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-sm mb-1">WhatsApp Number (e.g. 201234567890)</label>
+                        <input type="text" name="whatsapp_number" value="<%= settings.whatsapp_number %>" placeholder="Format: countrycode + number, no spaces" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm"/>
+                        <p class="text-xs text-gray-500 mt-1">If blank, digital payment orders will have WA redirection disabled.</p>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-200 space-y-4">
+                        <h3 class="font-bold text-gray-900">Change Password</h3>
+                        <div>
+                            <label class="block font-semibold text-sm mb-1">New Admin Password</label>
+                            <input type="password" name="new_password" placeholder="Leave blank to keep current" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary text-sm"/>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="bg-primary text-white py-3 px-6 rounded-lg font-semibold shadow hover:opacity-90 active:scale-95 transition-all text-sm">
+                            Save Settings
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Dish Modal (Add / Edit) -->
+    <div id="dish-modal" class="fixed inset-0 z-50 bg-black/40 hidden items-center justify-center p-gutter">
+        <div class="bg-white max-w-lg w-full p-6 rounded-xl border border-gray-200 shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <button onclick="closeDishModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <span class="material-symbols-outlined text-[28px]">close</span>
+            </button>
+            <h3 id="dish-modal-title" class="font-headline-md text-2xl font-bold text-primary mb-6">Add Menu Item</h3>
+            
+            <form id="dish-form" action="/admin/dishes/add" method="POST" enctype="multipart/form-data" class="space-y-4 text-sm">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold mb-1">Dish Name (EN) *</label>
+                        <input type="text" name="name" id="dish-name" required class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary"/>
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Dish Name (AR) *</label>
+                        <input type="text" name="name_ar" id="dish-name-ar" required class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary"/>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block font-semibold mb-1">Description (EN)</label>
+                    <textarea name="description" id="dish-desc" rows="2" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Description (AR)</label>
+                    <textarea name="description_ar" id="dish-desc-ar" rows="2" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary resize-none"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold mb-1">Price (EGP) *</label>
+                        <input type="number" name="price" id="dish-price" step="0.5" required class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary"/>
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-1">Stock Limit (Portions)</label>
+                        <input type="number" name="stock_limit" id="dish-stock" value="-1" class="w-full rounded-lg border-gray-300 p-3 focus:border-primary focus:ring-primary"/>
+                        <p class="text-[10px] text-gray-500 mt-0.5">Use -1 for unlimited.</p>
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Upload Photo</label>
+                    <input type="file" name="photo" accept="image/*" class="w-full text-xs text-gray-500 border border-gray-300 rounded-lg p-2 bg-gray-50"/>
+                </div>
+                <div class="grid grid-cols-3 gap-2 py-2">
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                        <input type="checkbox" name="is_available" id="dish-avail" value="1" checked class="rounded text-primary focus:ring-primary"/>
+                        <span class="font-semibold text-xs">Available</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                        <input type="checkbox" name="is_chef_special" id="dish-special" value="1" class="rounded text-primary focus:ring-primary"/>
+                        <span class="font-semibold text-xs">Chef's Special</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                        <input type="checkbox" name="is_vegetarian" id="dish-veg" value="1" class="rounded text-primary focus:ring-primary"/>
+                        <span class="font-semibold text-xs">Vegetarian</span>
+                    </label>
+                </div>
+                <div class="pt-4 border-t border-gray-200">
+                    <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-lg font-semibold shadow hover:opacity-90 active:scale-[0.98] transition-all">
+                        Save Item
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script for admin tabs & modals -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Show selected content
+            document.getElementById('tab-content-' + tabId).classList.remove('hidden');
+
+            // Deactivate all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                el.classList.add('text-gray-600', 'hover:bg-gray-100');
+            });
+            // Activate selected button
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            activeBtn.classList.remove('text-gray-600', 'hover:bg-gray-100');
+            activeBtn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+            
+            // Save last tab to localstorage
+            localStorage.setItem('hayla_admin_tab', tabId);
+        }
+
+        // Maintain active tab on reload
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTab = localStorage.getItem('hayla_admin_tab') || 'overview';
+            switchTab(savedTab);
+        });
+
+        // Dish Modals
+        function openDishModal() {
+            const modal = document.getElementById('dish-modal');
+            const form = document.getElementById('dish-form');
+            document.getElementById('dish-modal-title').innerText = 'Add Menu Item';
+            form.action = '/admin/dishes/add';
+            form.reset();
+            
+            // Set defaults
+            document.getElementById('dish-stock').value = '-1';
+            document.getElementById('dish-avail').checked = true;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function openEditDishModal(dish) {
+            const modal = document.getElementById('dish-modal');
+            const form = document.getElementById('dish-form');
+            document.getElementById('dish-modal-title').innerText = 'Edit Menu Item';
+            form.action = '/admin/dishes/edit/' + dish.id;
+            
+            document.getElementById('dish-name').value = dish.name;
+            document.getElementById('dish-name-ar').value = dish.name_ar;
+            document.getElementById('dish-desc').value = dish.description;
+            document.getElementById('dish-desc-ar').value = dish.description_ar;
+            document.getElementById('dish-price').value = dish.price;
+            document.getElementById('dish-stock').value = dish.stock_limit;
+            document.getElementById('dish-avail').checked = dish.is_available === 1;
+            document.getElementById('dish-special').checked = dish.is_chef_special === 1;
+            document.getElementById('dish-veg').checked = dish.is_vegetarian === 1;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDishModal() {
+            const modal = document.getElementById('dish-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>

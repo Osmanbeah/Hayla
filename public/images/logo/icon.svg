@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Tajine Body (Solid Silhouette) -->
+  <path d="M20 70C20 75.5228 33.4315 80 50 80C66.5685 80 80 75.5228 80 70V60H20V70Z" fill="#994127"/>
+  <path d="M50 25L80 55H20L50 25Z" fill="#994127"/>
+  
+  <!-- Refined Steam (Vertical Wavy Lines) -->
+  <path d="M46 20Q45 15 46 10" stroke="#994127" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M50 18Q51 12 50 7" stroke="#994127" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M54 20Q55 15 54 10" stroke="#994127" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+</svg>
