@@ -270,7 +270,7 @@
             <div class="space-y-4">
                 <h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest">Connect</h4>
                 <nav class="flex flex-col gap-2 font-body-md text-on-surface-variant">
-                    <a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="https://wa.me/<%= settings.whatsapp_number ? settings.whatsapp_number.replace(/\D/g, '') : '' %>">WhatsApp</a>
+                    <a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="<%= getWhatsappLink(settings.whatsapp_number) %>">WhatsApp</a>
                 </nav>
             </div>
         </div>

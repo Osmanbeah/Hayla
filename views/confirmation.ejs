@@ -200,8 +200,7 @@
                         </p>
                         <% 
                             let whatsappMsg = `Hello Hayla Kitchen! I would like to complete my pre-order.\nOrder ID: #${order.id}\nName: ${order.customer_name}\nTotal: ${order.total_amount + (order.delivery_type === 'delivery' ? 50 : 0)} EGP\nMethod: ${order.payment_method}`;
-                            let encodedMsg = encodeURIComponent(whatsappMsg);
-                            let whatsappLink = `https://wa.me/${settings.whatsapp_number ? settings.whatsapp_number.replace(/\D/g, '') : ''}?text=${encodedMsg}`;
+                            let whatsappLink = getWhatsappLink(settings.whatsapp_number, whatsappMsg);
                         %>
                         <a href="<%= whatsappLink %>" target="_blank" class="w-full bg-[#25D366] text-white font-label-md py-3 rounded-lg flex items-center justify-center gap-2 active:scale-95 duration-200 shadow-md">
                             <span class="material-symbols-outlined">chat</span> <%= t.btnCompleteWhatsapp %>

@@ -327,7 +327,7 @@
             </div>
             <div class="flex flex-col gap-xs">
                 <h5 class="font-label-md text-on-surface mb-2">Connect</h5>
-                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="https://wa.me/<%= settings.whatsapp_number ? settings.whatsapp_number.replace(/\D/g, '') : '' %>">WhatsApp</a>
+                <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="<%= getWhatsappLink(settings.whatsapp_number) %>">WhatsApp</a>
                 <a class="text-on-surface-variant hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="#">Instagram</a>
             </div>
         </div>

@@ -191,7 +191,7 @@
 
                 <!-- WhatsApp Callout -->
                 <% if (settings.whatsapp_number) { %>
-                    <a href="https://wa.me/<%= settings.whatsapp_number.replace(/\D/g, '') %>" class="w-full bg-[#25D366] text-white text-center font-label-md py-4 rounded-lg flex items-center justify-center gap-2 active:scale-95 duration-200 shadow-md">
+                    <a href="<%= getWhatsappLink(settings.whatsapp_number) %>" class="w-full bg-[#25D366] text-white text-center font-label-md py-4 rounded-lg flex items-center justify-center gap-2 active:scale-95 duration-200 shadow-md">
                         <span class="material-symbols-outlined">chat</span> <%= t.orderViaWhatsapp %>
                     </a>
                 <% } %>
@@ -211,7 +211,7 @@
                     <%= lang === 'ar' ? 'مطبخنا يستقبل كافة الطلبات والاستفسارات حصرياً عبر الواتساب. اضغط على الزر بالأسفل لبدء المحادثة مباشرة.' : 'Our kitchen receives all inquiries and requests exclusively via WhatsApp. Click the button below to start a chat with us directly.' %>
                 </p>
                 <% if (settings.whatsapp_number) { %>
-                    <a href="https://wa.me/<%= settings.whatsapp_number.replace(/\D/g, '') %>" target="_blank" class="bg-[#25D366] text-white font-label-md text-base px-8 py-4 rounded-lg flex items-center justify-center gap-2 active:scale-95 duration-200 shadow-md hover:bg-[#22c35e] transition-all">
+                    <a href="<%= getWhatsappLink(settings.whatsapp_number) %>" target="_blank" class="bg-[#25D366] text-white font-label-md text-base px-8 py-4 rounded-lg flex items-center justify-center gap-2 active:scale-95 duration-200 shadow-md hover:bg-[#22c35e] transition-all">
                         <span class="material-symbols-outlined">chat</span>
                         <%= lang === 'ar' ? 'تواصل الآن عبر الواتساب' : 'Start WhatsApp Chat' %>
                     </a>

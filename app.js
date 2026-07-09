@@ -27,11 +27,25 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours
 }));
 
-// Language preference middleware
+// Language preference and helpers middleware
 app.use((req, res, next) => {
   if (!req.session.lang) {
     req.session.lang = 'ar'; // Main language is Arabic by default
   }
+  
+  // WhatsApp link formatter helper
+  res.locals.getWhatsappLink = (phone, text = '') => {
+    if (!phone) return '#';
+    let cleaned = phone.replace(/\D/g, '');
+    if (cleaned.startsWith('01') && cleaned.length === 11) {
+      cleaned = '2' + cleaned;
+    } else if (cleaned.startsWith('1') && cleaned.length === 10) {
+      cleaned = '20' + cleaned;
+    }
+    const base = `https://wa.me/${cleaned}`;
+    return text ? `${base}?text=${encodeURIComponent(text)}` : base;
+  };
+  
   next();
 });
 
