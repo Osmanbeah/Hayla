@@ -120,7 +120,7 @@
     <header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
         <nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
             <div class="flex items-center gap-4">
-                <span class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200">menu</span>
+                <span class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200" onclick="toggleMobileDrawer()">menu</span>
                 <a href="/" class="flex items-center">
                     <img src="/images/logo/lockup.svg" alt="Hayla - Authentic Egyptian Homemade Food" class="h-10 md:h-12 w-auto" />
                 </a>
@@ -223,11 +223,70 @@
         </div>
     </main>
 
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="fixed inset-y-0 <%= lang === 'ar' ? 'right-0' : 'left-0' %> w-72 bg-surface shadow-2xl z-[150] transform <%= lang === 'ar' ? 'translate-x-full' : '-translate-x-full' %> transition-transform duration-300 flex flex-col border-r border-outline-variant/30 font-body-md">
+        <div class="p-md border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-low">
+            <img src="/images/logo/lockup.svg" alt="Hayla Logo" class="h-8 w-auto" />
+            <button onclick="toggleMobileDrawer()" class="text-on-surface hover:text-primary">
+                <span class="material-symbols-outlined text-[32px]">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col p-md space-y-sm text-lg font-label-md">
+            <a class="py-sm border-b border-outline-variant/10 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-between" href="/">
+                <span><%= t.navHome %></span>
+                <span class="material-symbols-outlined text-sm"><%= lang === 'ar' ? 'chevron_left' : 'chevron_right' %></span>
+            </a>
+            <a class="py-sm border-b border-outline-variant/10 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-between" href="/about">
+                <span><%= t.navStory %></span>
+                <span class="material-symbols-outlined text-sm"><%= lang === 'ar' ? 'chevron_left' : 'chevron_right' %></span>
+            </a>
+            <a class="py-sm border-b border-outline-variant/10 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-between" href="/menu">
+                <span><%= t.navMenu %></span>
+                <span class="material-symbols-outlined text-sm"><%= lang === 'ar' ? 'chevron_left' : 'chevron_right' %></span>
+            </a>
+            <a class="py-sm border-b border-outline-variant/10 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-between" href="/reviews">
+                <span><%= t.navReviews %></span>
+                <span class="material-symbols-outlined text-sm"><%= lang === 'ar' ? 'chevron_left' : 'chevron_right' %></span>
+            </a>
+            <a class="py-sm border-b border-outline-variant/10 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-between" href="/contact">
+                <span><%= t.navContact %></span>
+                <span class="material-symbols-outlined text-sm"><%= lang === 'ar' ? 'chevron_left' : 'chevron_right' %></span>
+            </a>
+            <div class="pt-md flex flex-col gap-sm">
+                <a href="/lang/<%= lang === 'ar' ? 'en' : 'ar' %>" class="border border-primary text-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary/5 transition-all text-sm text-center">
+                    <%= t.langSwitchBtn %>
+                </a>
+                <a href="/menu" class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary-container transition-all text-sm text-center">
+                    <%= t.btnPreorder %>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Backdrop for Mobile Drawer -->
+    <div id="mobile-backdrop" onclick="toggleMobileDrawer()" class="fixed inset-0 bg-black/40 z-[140] hidden transition-opacity duration-300"></div>
+
     <!-- Footer -->
     <footer class="bg-surface-container-high border-t border-outline-variant/30 pt-xl pb-md">
         <div class="max-w-container-max mx-auto px-gutter text-center">
             <p class="font-body-md text-body-md text-on-surface-variant/70">© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
         </div>
     </footer>
+    <script>
+        function toggleMobileDrawer() {
+            const drawer = document.getElementById('mobile-drawer');
+            const backdrop = document.getElementById('mobile-backdrop');
+            const isRtlDir = "<%= t.dir %>" === "rtl";
+            const isOpen = isRtlDir
+                ? !drawer.classList.contains('translate-x-full')
+                : !drawer.classList.contains('-translate-x-full');
+            if (isOpen) {
+                drawer.classList.add(isRtlDir ? 'translate-x-full' : '-translate-x-full');
+                backdrop.classList.add('hidden');
+            } else {
+                drawer.classList.remove(isRtlDir ? 'translate-x-full' : '-translate-x-full');
+                backdrop.classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
