@@ -29,7 +29,6 @@ app.use(session({
 
 // Language preference and helpers middleware
 app.use((req, res, next) => {
-  res.contentType('text/html; charset=utf-8');
   if (!req.session.lang) {
     req.session.lang = 'ar'; // Main language is Arabic by default
   }
