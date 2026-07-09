@@ -27,6 +27,27 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours
 }));
 
+// ── UTF-8 charset enforcement ────────────────────────────────────────────────
+// Vercel's edge can set `Content-Type: text/html` without `;charset=utf-8`
+// before Express runs.  When Express later calls res.send() it skips adding
+// the charset if a Content-Type header is already present.  The browser then
+// has no charset declaration until it parses <meta charset> — which for longer
+// pages may be after it has already started rendering with Latin-1, causing
+// the classic Arabic mojibake (UTF-8 bytes read as ISO-8859-1).
+//
+// This middleware overrides the header early, before any route, so every HTML
+// response is guaranteed to advertise UTF-8.  JSON responses carry their own
+// `application/json; charset=utf-8` set by res.json() and are unaffected.
+// Redirects have no body so charset is irrelevant there too.
+app.use((req, res, next) => {
+  // Override charset before the route handler touches the response.
+  // We use res.setHeader (Node core) rather than res.set (Express) so this
+  // runs even if a prior Vercel middleware already wrote a Content-Type.
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  next();
+});
+// ── End UTF-8 charset enforcement ────────────────────────────────────────────
+
 // Language preference and helpers middleware
 app.use((req, res, next) => {
   if (!req.session.lang) {
@@ -62,60 +83,7 @@ async function getSettings() {
   return settings;
 }
 
-// ── TEMPORARY DIAGNOSTIC ROUTE ── remove after diagnosis ──────────────────────
-app.get('/debug-encoding', async (req, res) => {
-  try {
-    const client = await db.connect();
-    try {
-      // 1. Server + client encoding settings
-      const encRes = await client.query(`
-        SELECT current_setting('server_encoding') AS server_encoding,
-               current_setting('client_encoding') AS client_encoding
-      `);
 
-      // 2. Raw bytes of a settings value via encode()
-      const settingsRes = await client.query(`
-        SELECT key,
-               value,
-               encode(convert_to(value, 'UTF8'), 'hex') AS utf8_hex,
-               encode(value::bytea, 'hex')              AS raw_pg_hex
-        FROM settings
-        WHERE key IN ('deadline_day_ar','delivery_date_ar','deadline_time_ar')
-      `);
-
-      // 3. Raw bytes of a dish arabic name
-      const dishRes = await client.query(`
-        SELECT id,
-               name_ar,
-               encode(convert_to(name_ar, 'UTF8'), 'hex') AS utf8_hex,
-               encode(name_ar::bytea, 'hex')              AS raw_pg_hex
-        FROM dishes
-        LIMIT 2
-      `);
-
-      // 4. What Node receives — charCodes of each character
-      const nodeView = settingsRes.rows.map(r => ({
-        key: r.key,
-        value: r.value,
-        charCodes: [...r.value].map(c => c.codePointAt(0).toString(16)),
-        utf8_hex: r.utf8_hex,
-        raw_pg_hex: r.raw_pg_hex
-      }));
-
-      res.json({
-        pg_encoding: encRes.rows[0],
-        settings_raw: settingsRes.rows,
-        dishes_raw: dishRes.rows,
-        node_charCodes: nodeView
-      });
-    } finally {
-      client.release();
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message, stack: err.stack });
-  }
-});
-// ── END TEMPORARY DIAGNOSTIC ROUTE ────────────────────────────────────────────
 
 // Localization helpers
 function localizeDish(dish, lang) {
@@ -278,6 +246,10 @@ app.get('/checkout', async (req, res) => {
 });
 
 // Process Checkout
+// Note: this route responds with JSON (res.json), so the UTF-8 middleware
+// sets text/html first but res.json() overwrites it with application/json;
+// charset=utf-8 — correct behaviour, no Arabic text in JSON error strings
+// will be affected.
 app.post('/checkout', async (req, res) => {
   const { customer_name, customer_phone, delivery_type, address, payment_method, cart_data } = req.body;
   const lang = req.session.lang;
