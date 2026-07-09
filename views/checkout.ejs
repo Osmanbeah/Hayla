@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="<%= lang %>" dir="<%= t.dir %>" class="scroll-smooth">
 <head>
     <meta charset="utf-8"/>
@@ -120,7 +120,7 @@
     <header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
         <nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
             <div class="flex items-center gap-4">
-                <span class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200" onclick="toggleMobileDrawer()">menu</span>
+                <button onclick="toggleMobileDrawer()" class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200 select-none cursor-pointer bg-transparent border-none p-0 leading-none" style="font-family:'Material Symbols Outlined';user-select:none;-webkit-user-select:none">menu</button>
                 <a href="/" class="flex items-center">
                     <img src="/images/logo/lockup.svg" alt="Hayla - Authentic Egyptian Homemade Food" class="h-10 md:h-12 w-auto" />
                 </a>
@@ -167,7 +167,7 @@
                             <input type="text" name="customer_name" required class="w-full bg-background border border-outline-variant/50 rounded-lg p-sm focus:outline-none focus:border-primary font-body-md"/>
                         </div>
                         <div class="space-y-xs">
-                            <label class="font-label-sm text-on-surface-variant block"><%= lang === 'ar' ? 'رقم الهاتف (الواتساب) *' : 'Phone Number (WhatsApp) *' %></label>
+                            <label class="font-label-sm text-on-surface-variant block"><%= lang === 'ar' ? 'Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ (Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨) *' : 'Phone Number (WhatsApp) *' %></label>
                             <input type="tel" name="customer_phone" placeholder="<%= t.checkoutPhonePlaceholder %>" required class="w-full bg-background border border-outline-variant/50 rounded-lg p-sm focus:outline-none focus:border-primary font-body-md"/>
                         </div>
                     </div>
@@ -302,7 +302,7 @@
                 <p class="font-body-md text-body-md text-on-surface-variant mb-6"><%= t.tagline %></p>
             </div>
             <div class="space-y-4">
-                <h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest"><%= lang === 'ar' ? 'روابط سريعة' : 'Navigation' %></h4>
+                <h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest"><%= lang === 'ar' ? 'Ø±ÙˆØ§Ø¨Ø· Ø³Ø±ÙŠØ¹Ø©' : 'Navigation' %></h4>
                 <nav class="flex flex-col gap-2 font-body-md text-on-surface-variant">
                     <a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/about"><%= t.navStory %></a>
                     <a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/menu"><%= t.navMenu %></a>
@@ -317,7 +317,7 @@
             </div>
         </div>
         <div class="max-w-container-max mx-auto px-gutter mt-xl pt-md border-t border-outline-variant/20 text-center">
-            <p class="font-body-md text-body-md text-on-surface-variant/70">© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
+            <p class="font-body-md text-body-md text-on-surface-variant/70">Â© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
         </div>
     </footer>
 
@@ -373,7 +373,7 @@
                 container.classList.add('hidden');
                 input.required = false;
                 input.value = '';
-                shippingSpan.innerText = isRtl ? 'مجاناً (استلام)' : 'Free (Pickup)';
+                shippingSpan.innerText = isRtl ? 'Ù…Ø¬Ø§Ù†Ø§Ù‹ (Ø§Ø³ØªÙ„Ø§Ù…)' : 'Free (Pickup)';
             }
             
             recalculateGrandTotal();
@@ -439,12 +439,12 @@
                     localStorage.removeItem('hayla_cart');
                     window.location.href = '/confirmation?orderId=' + result.orderId;
                 } else {
-                    errDiv.innerText = result.error || (isRtl ? 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.' : 'An unexpected error occurred. Please try again.');
+                    errDiv.innerText = result.error || (isRtl ? 'Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…ØªÙˆÙ‚Ø¹. ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰.' : 'An unexpected error occurred. Please try again.');
                     errDiv.classList.remove('hidden');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             } catch(err) {
-                errDiv.innerText = isRtl ? 'فشل الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت.' : 'Connection to the server failed. Please check your internet connection.';
+                errDiv.innerText = isRtl ? 'ÙØ´Ù„ Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ø§Ù„Ø®Ø§Ø¯Ù…. ÙŠØ±Ø¬Ù‰ Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø§ØªØµØ§Ù„Ùƒ Ø¨Ø§Ù„Ø¥Ù†ØªØ±Ù†Øª.' : 'Connection to the server failed. Please check your internet connection.';
                 errDiv.classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -452,3 +452,4 @@
     </script>
 </body>
 </html>
+

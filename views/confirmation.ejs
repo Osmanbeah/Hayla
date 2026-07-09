@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="<%= lang %>" dir="<%= t.dir %>" class="scroll-smooth">
 <head>
     <meta charset="utf-8"/>
@@ -120,7 +120,7 @@
     <header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
         <nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
             <div class="flex items-center gap-4">
-                <span class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200" onclick="toggleMobileDrawer()">menu</span>
+                <button onclick="toggleMobileDrawer()" class="material-symbols-outlined text-primary text-2xl active:scale-95 duration-200 select-none cursor-pointer bg-transparent border-none p-0 leading-none" style="font-family:'Material Symbols Outlined';user-select:none;-webkit-user-select:none">menu</button>
                 <a href="/" class="flex items-center">
                     <img src="/images/logo/lockup.svg" alt="Hayla - Authentic Egyptian Homemade Food" class="h-10 md:h-12 w-auto" />
                 </a>
@@ -268,7 +268,7 @@
     <!-- Footer -->
     <footer class="bg-surface-container-high border-t border-outline-variant/30 pt-xl pb-md">
         <div class="max-w-container-max mx-auto px-gutter text-center">
-            <p class="font-body-md text-body-md text-on-surface-variant/70">© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
+            <p class="font-body-md text-body-md text-on-surface-variant/70">Â© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
         </div>
     </footer>
     <script>
@@ -290,3 +290,4 @@
     </script>
 </body>
 </html>
+
