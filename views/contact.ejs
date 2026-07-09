@@ -205,19 +205,19 @@
                     </svg>
                 </div>
                 <h3 class="font-headline-md text-headline-md text-on-surface">
-                    <%= lang === 'ar' ? 'ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§ Ø¹Ø¨Ø± Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨' : 'Contact Us on WhatsApp' %>
+                    <%= lang === 'ar' ? 'تواصل معنا عبر الواتساب' : 'Contact Us on WhatsApp' %>
                 </h3>
                 <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
-                    <%= lang === 'ar' ? 'Ù…Ø·Ø¨Ø®Ù†Ø§ ÙŠØ³ØªÙ‚Ø¨Ù„ ÙƒØ§ÙØ© Ø§Ù„Ø·Ù„Ø¨Ø§Øª ÙˆØ§Ù„Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø­ØµØ±ÙŠØ§Ù‹ Ø¹Ø¨Ø± Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨. Ø§Ø¶ØºØ· Ø¹Ù„Ù‰ Ø§Ù„Ø²Ø± Ø¨Ø§Ù„Ø£Ø³ÙÙ„ Ù„Ø¨Ø¯Ø¡ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© Ù…Ø¨Ø§Ø´Ø±Ø©.' : 'Our kitchen receives all inquiries and requests exclusively via WhatsApp. Click the button below to start a chat with us directly.' %>
+                    <%= lang === 'ar' ? 'مطبخنا يستقبل كافة الطلبات والاستفسارات حصرياً عبر الواتساب. اضغط على الزر بالأسفل لبدء المحادثة مباشرة.' : 'Our kitchen receives all inquiries and requests exclusively via WhatsApp. Click the button below to start a chat with us directly.' %>
                 </p>
                 <% if (settings.whatsapp_number) { %>
                     <a href="<%= getWhatsappLink(settings.whatsapp_number) %>" target="_blank" class="bg-[#25D366] text-white font-label-md text-base px-8 py-4 rounded-lg flex items-center justify-center gap-2 active:scale-95 duration-200 shadow-md hover:bg-[#22c35e] transition-all">
                         <span class="material-symbols-outlined">chat</span>
-                        <%= lang === 'ar' ? 'ØªÙˆØ§ØµÙ„ Ø§Ù„Ø¢Ù† Ø¹Ø¨Ø± Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨' : 'Start WhatsApp Chat' %>
+                        <%= lang === 'ar' ? 'تواصل الآن عبر الواتساب' : 'Start WhatsApp Chat' %>
                     </a>
                 <% } else { %>
                     <span class="text-error font-bold font-label-md">
-                        <%= lang === 'ar' ? 'Ù„Ù… ÙŠØªÙ… Ø¥Ø¹Ø¯Ø§Ø¯ Ø±Ù‚Ù… Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨ Ø¨Ø¹Ø¯.' : 'WhatsApp number is not configured.' %>
+                        <%= lang === 'ar' ? 'لم يتم إعداد رقم الواتساب بعد.' : 'WhatsApp number is not configured.' %>
                     </span>
                 <% } %>
             </div>
@@ -276,7 +276,7 @@
                 <p class="font-body-md text-body-md text-on-surface-variant mb-6"><%= t.tagline %></p>
             </div>
             <div class="space-y-4">
-                <h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest"><%= lang === 'ar' ? 'Ø±ÙˆØ§Ø¨Ø· Ø³Ø±ÙŠØ¹Ø©' : 'Navigation' %></h4>
+                <h4 class="font-label-md text-on-surface font-bold uppercase tracking-widest"><%= lang === 'ar' ? 'روابط سريعة' : 'Navigation' %></h4>
                 <nav class="flex flex-col gap-2 font-body-md text-on-surface-variant">
                     <a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/about"><%= t.navStory %></a>
                     <a class="hover:text-primary transition-all underline decoration-primary/30 underline-offset-4" href="/menu"><%= t.navMenu %></a>
@@ -291,7 +291,7 @@
             </div>
         </div>
         <div class="max-w-container-max mx-auto px-gutter mt-xl pt-md border-t border-outline-variant/20 text-center">
-            <p class="font-body-md text-body-md text-on-surface-variant/70">Â© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
+            <p class="font-body-md text-body-md text-on-surface-variant/70">© 2024 <%= t.brandName %>. <%= t.tagline %>.</p>
         </div>
     </footer>
     <script>
