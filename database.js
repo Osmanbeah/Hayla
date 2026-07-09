@@ -211,6 +211,56 @@ async function initDatabase() {
       ]);
     }
 
+    // Auto-heal any garbled Arabic data in the database (e.g. from previous bad encoding sessions)
+    // 1. Settings Table
+    const garbledCheck = await client.query("SELECT * FROM settings WHERE key IN ('deadline_day_ar', 'deadline_time_ar', 'delivery_date_ar')");
+    for (const row of garbledCheck.rows) {
+      if (row.value && (row.value.includes('Ø') || row.value.includes('Ù') || row.value.includes('æ'))) {
+        console.log(`Healing garbled database setting: ${row.key}`);
+        if (row.key === 'deadline_day_ar') {
+          await client.query("UPDATE settings SET value = 'الثلاثاء' WHERE key = 'deadline_day_ar'");
+        } else if (row.key === 'deadline_time_ar') {
+          await client.query("UPDATE settings SET value = '٨:٠٠ مساءً' WHERE key = 'deadline_time_ar'");
+        } else if (row.key === 'delivery_date_ar') {
+          await client.query("UPDATE settings SET value = 'الجمعة' WHERE key = 'delivery_date_ar'");
+        }
+      }
+    }
+
+    // 2. Dishes Table
+    const garbledDishes = await client.query("SELECT id, name_ar, description_ar FROM dishes");
+    for (const row of garbledDishes.rows) {
+      if ((row.name_ar && (row.name_ar.includes('Ø') || row.name_ar.includes('Ù'))) || 
+          (row.description_ar && (row.description_ar.includes('Ø') || row.description_ar.includes('Ù')))) {
+        console.log(`Healing garbled dish ID: ${row.id}`);
+        if (row.id === 1) {
+          await client.query("UPDATE dishes SET name_ar = 'مسقعة أمي الكلاسيكية', description_ar = 'طبقات من الباذنجان المشوي مع اللحم المفروم المتبل في صلصة طماطم غنية مطبوخة ببطء.' WHERE id = 1");
+        } else if (row.id === 2) {
+          await client.query("UPDATE dishes SET name_ar = 'كشري تقليدي', description_ar = 'مزيجنا المميز من الحبوب والبقوليات والبصل المقرمش يقدم مع دقة الطماطم السرية.' WHERE id = 2");
+        } else if (row.id === 3) {
+          await client.query("UPDATE dishes SET name_ar = 'محشي الجدة', description_ar = 'ورق عنب ملفوف يدوياً وخضروات موسمية محشية بخلطة الأرز والأعشاب العطرة.' WHERE id = 3");
+        } else if (row.id === 4) {
+          await client.query("UPDATE dishes SET name_ar = 'طاجن بامية باللحم الضأن', description_ar = 'قرون بامية صغيرة وقطع لحم ضأن طرية مطبوخة ببطء في طاجن فخاري مع الكزبرة والثوم وصلصة الطماطم الغنية.' WHERE id = 4");
+        }
+      }
+    }
+
+    // 3. Reviews Table
+    const garbledReviews = await client.query("SELECT id, customer_name_ar, customer_region_ar, comment_ar FROM reviews");
+    for (const row of garbledReviews.rows) {
+      if ((row.customer_name_ar && (row.customer_name_ar.includes('Ø') || row.customer_name_ar.includes('Ù'))) ||
+          (row.customer_region_ar && (row.customer_region_ar.includes('Ø') || row.customer_region_ar.includes('Ù'))) ||
+          (row.comment_ar && (row.comment_ar.includes('Ø') || row.comment_ar.includes('Ù')))) {
+        console.log(`Healing garbled review ID: ${row.id}`);
+        if (row.id === 1) {
+          await client.query("UPDATE reviews SET customer_name_ar = 'فريدة مصطفى', customer_region_ar = 'المعادي', comment_ar = 'المحشي رجعني لأيام طفولتي في القاهرة. بجد تحس بالطعم والحب في كل قضمية. هيلا بقت طقس أسبوعي لعيلتنا.' WHERE id = 1");
+        } else if (row.id === 2) {
+          await client.query("UPDATE reviews SET customer_name_ar = 'أحمد رامي', customer_region_ar = 'الزمالك', comment_ar = 'المكرونة بالبشاميل طالعة مظبوطة جداً. البشاميل كريمي والوش لونه دهبي يجنن. ١٠/١٠!' WHERE id = 2");
+        } else if (row.id === 3) {
+          await client.query("UPDATE reviews SET customer_name_ar = 'ياسمين طارق', customer_region_ar = 'مصر الجديدة', comment_ar = 'كشري بيتي روعة ونظيف جداً، والبصل المقرمش حكاية. هطلب تاني الأسبوع الجاي أكيد.' WHERE id = 3");
+        }
+      }
+    }
   } catch (err) {
     console.error('Error during database initialization:', err);
     throw err;
