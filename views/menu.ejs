@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="<%= lang %>" dir="<%= t.dir %>" class="scroll-smooth">
 <head>
     <meta charset="utf-8"/>
@@ -132,13 +132,13 @@
     </style>
 </head>
 <body class="bg-surface text-on-background font-body-md antialiased min-h-screen flex flex-col relative">
-    <div class="fixed inset-0 linen-texture z-[100]"></div>
+    <div class="fixed inset-0 linen-texture pointer-events-none" style="z-index:-1"></div>
     
     <!-- TopAppBar -->
     <header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-sm">
         <div class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
             <div class="flex items-center gap-md">
-                <button onclick="toggleMobileDrawer()" class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-200 select-none bg-transparent border-none p-0 leading-none" style="font-family:'Material Symbols Outlined';user-select:none;-webkit-user-select:none">menu</button>
+                <button type="button" onclick="toggleMobileDrawer()" style="background:none;border:none;padding:8px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent"><span class="material-symbols-outlined" style="font-size:28px;color:var(--tw-primary,#b8583d);user-select:none">menu</span></button>
                 <a href="/" class="flex items-center">
                     <img src="/images/logo/lockup.svg" alt="Hayla - Authentic Egyptian Homemade Food" class="h-10 md:h-12 w-auto" />
                 </a>
@@ -521,4 +521,5 @@
     </script>
 </body>
 </html>
+
 
