@@ -62,6 +62,61 @@ async function getSettings() {
   return settings;
 }
 
+// ── TEMPORARY DIAGNOSTIC ROUTE ── remove after diagnosis ──────────────────────
+app.get('/debug-encoding', async (req, res) => {
+  try {
+    const client = await db.connect();
+    try {
+      // 1. Server + client encoding settings
+      const encRes = await client.query(`
+        SELECT current_setting('server_encoding') AS server_encoding,
+               current_setting('client_encoding') AS client_encoding
+      `);
+
+      // 2. Raw bytes of a settings value via encode()
+      const settingsRes = await client.query(`
+        SELECT key,
+               value,
+               encode(convert_to(value, 'UTF8'), 'hex') AS utf8_hex,
+               encode(value::bytea, 'hex')              AS raw_pg_hex
+        FROM settings
+        WHERE key IN ('deadline_day_ar','delivery_date_ar','deadline_time_ar')
+      `);
+
+      // 3. Raw bytes of a dish arabic name
+      const dishRes = await client.query(`
+        SELECT id,
+               name_ar,
+               encode(convert_to(name_ar, 'UTF8'), 'hex') AS utf8_hex,
+               encode(name_ar::bytea, 'hex')              AS raw_pg_hex
+        FROM dishes
+        LIMIT 2
+      `);
+
+      // 4. What Node receives — charCodes of each character
+      const nodeView = settingsRes.rows.map(r => ({
+        key: r.key,
+        value: r.value,
+        charCodes: [...r.value].map(c => c.codePointAt(0).toString(16)),
+        utf8_hex: r.utf8_hex,
+        raw_pg_hex: r.raw_pg_hex
+      }));
+
+      res.json({
+        pg_encoding: encRes.rows[0],
+        settings_raw: settingsRes.rows,
+        dishes_raw: dishRes.rows,
+        node_charCodes: nodeView
+      });
+    } finally {
+      client.release();
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message, stack: err.stack });
+  }
+});
+// ── END TEMPORARY DIAGNOSTIC ROUTE ────────────────────────────────────────────
+
 // Localization helpers
 function localizeDish(dish, lang) {
   return {
